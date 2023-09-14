@@ -1,0 +1,162 @@
+JSP(Java Server Pages)
+---------------------
+
+JSP is a server side technology that does all the processing at server. 
+
+It is used for creating dynamic web applications, using java as programming language.
+
+Basically, any html file can be converted to JSP file by just changing the file extension from
+“.html” to “.jsp”, it would run just fine.
+
+What differentiates JSP from HTML is the ability to use java code inside HTML. 
+In JSP, you can embed Java code in HTML using JSP tags.
+
+LifeCycle Methods of Jsp:
+=========================
+when you create any jsp internally it will convert into a Servlet with help of Jsp container (jsp-api.jar)
+
+jspInit()
+_jspService()
+jspDestroy()
+
+
+
+Elements of JSP
+===============
+JSP Declaration
+JSP Scriptlet
+JSP Expression
+JSP Comments
+
+
+JSP Comments
+-------------
+Comments are the one when JSP container wants to ignore certain texts and statements.
+When we want to hide certain content, then we can add that to the comments section.
+
+Syntax:
+-------
+<% -- JSP Comments -- %>
+
+This tags are used to comment in JSP and ignored by the JSP container.
+
+
+JSP Scriptlet
+----------------
+Scriptlet tag allows to write Java code into JSP file.
+
+JSP container moves statements in _jspservice() method while generating servlet from jsp.
+
+For each request of the client, service method of the JSP gets invoked hence the code inside 
+the Scriptlet executes for every request.
+
+A Scriptlet contains java code that is executed every time JSP is invoked.
+
+Syntax of Scriptlet tag:
+------------------------
+<% java code %>
+
+Here <% %> tags are scriplets tag and within it, we can place java code.
+
+Ex:
+---
+Create  Dynamic web project named as DemoOnJsp 
+Create a jsp file named as index.jsp
+write a html code and javacode(scriptlet) to display welcome message.
+
+Note:
+-----
+Create All Jsp pages under webapp/ or WebContent/
+
+
+JSP Expression(=)
+-----------------
+Expression tag evaluates the expression placed in it.
+
+It accesses the data stored in stored application.
+
+It allows create expressions like arithmetic and logical.
+
+It produces scriptless JSP page.
+
+Syntax:
+-------
+<%= expression %>
+
+Here the expression is the arithmetic or logical expression.
+
+note:
+-----
+Statements cannot terminate with semicolon.
+
+
+
+JSP Declaration
+---------------
+A declaration tag is a piece of Java code for declaring variables, methods and classes. 
+
+If we declare a variable or method inside declaration tag it means that the declaration is 
+made inside the servlet class but outside the service method.
+
+We can declare a static member, an instance variable (can declare a number or string) 
+and methods inside the declaration tag.
+
+Syntax of declaration tag:
+--------------------------
+<%!  Dec var  %>
+
+Here Dec var is the method or a variable inside the declaration tag.
+
+Ex:
+===
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+       
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>We are working with JSP </h1>
+
+<%--JSP Comments jsp Scriplet --%>
+<%
+  out.println("we are working with JSP using Scriplets");
+%>
+<br>
+<%--JSP Expression --%>
+sum of two numbers: <%=(50+60)%>
+
+<%--JSP Declaration --%>
+
+<%!
+   //defining a variables
+   int empId=1001;
+   String empName="smith";
+   float empSal=4000;
+   
+   public int additionOfTwoNumber(int x,int y){
+	   
+	   return x+y;
+   }
+   
+   public void methodOne(){
+	   System.out.println("we are in methodOne");
+   }
+%>
+
+<h1>Employee Details are:</h1>
+EMpid :  <%out.println(this.empId);%> <br>
+EMpName :  <%out.println(this.empName);%> <br>
+EMpSal :  <%out.println(this.empSal);%> <br>
+
+Addition of Two Numbers: <%=this.additionOfTwoNumber(20,30) %>
+
+<%
+ this.methodOne();
+%>
+
+</body>
+</html>
